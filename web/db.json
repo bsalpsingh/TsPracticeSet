@@ -2,13 +2,11 @@
   "users": [
     {
       "id": 1,
-      "name": "jharna",
-      "age": 24
+      "name": "bishal hgnis"
     },
     {
       "id": 2,
-      "name": "bishal singh",
-      "age": 34
+      "name": "anrahj"
     }
   ]
 }
