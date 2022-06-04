@@ -7,6 +7,36 @@
     {
       "id": 2,
       "name": "anrahj"
+    },
+    {
+      "name": "Bishal Singh",
+      "age": 24,
+      "id": 3
+    },
+    {
+      "name": "Bishal Singh",
+      "age": 24,
+      "id": 4
+    },
+    {
+      "name": "jharna singh",
+      "age": 24,
+      "id": 5
+    },
+    {
+      "name": "jharna singh",
+      "age": 24,
+      "id": 6
+    },
+    {
+      "name": "bsal",
+      "age": 24,
+      "id": 7
+    },
+    {
+      "name": "bsal",
+      "age": 24,
+      "id": 8
     }
   ]
 }

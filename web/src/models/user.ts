@@ -8,7 +8,7 @@ export interface UserProps {
   name?: string;
   age?: number;
 }
-const rootUrl = "http://localhost:3000";
+const rootUrl = "http://localhost:3000/users/";
 export class User extends Model<UserProps> {
   // if constructor is not called ..it is called behind the scenes with super()
   static buildUser(attrs: UserProps): User {
@@ -23,4 +23,10 @@ export class User extends Model<UserProps> {
       User.buildUser(json)
     );
   }
+  setRandomAge(): void {
+    this.set({ age: Math.round(Math.random() * 100) });
+  }
 }
+
+
+console.log(User.prototype,"user prototype")

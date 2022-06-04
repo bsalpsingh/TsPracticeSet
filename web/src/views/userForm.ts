@@ -1,15 +1,28 @@
-export class UserForm {
-  constructor(public parent: Element) {}
-
+import { User, UserProps } from "./../models/user";
+import { View } from "./views";
+export class UserForm extends View<User, UserProps> {
   eventsMap(): { [key: string]: () => void } {
     return {
-      "click:button": this.onButtonClick,
-      "mouseenter:h1": this.onMouseEnter,
+      "click:.set-age": this.setRandomAge,
+      "click:.set-name": this.onSetNameClick,
+      "click:.save-model": this.onSaveClick,
     };
   }
-  onButtonClick(): void {
-    console.log("button clicked");
-  }
+
+  onSaveClick = (): void => {
+    this.model.save();
+  };
+  onSetNameClick = (): void => {
+    const input = this.parent.querySelector("input");
+    const name = input.value;
+
+    if (name) {
+      this.model.set({ name });
+    }
+  };
+  setRandomAge = (): void => {
+    this.model.setRandomAge();
+  };
   onMouseEnter(): void {
     console.log("hi ... H1 being hovered on ");
   }
@@ -17,31 +30,11 @@ export class UserForm {
   template(): string {
     return `
         <div>
-        <h1>user form</h1>
-        <input />
+        <input placeholder=${this.model.get("name")} />
+         <button class="set-name">Set Name</button>
+        <button class="set-age">Set Random Age</button>
+      <button class="save-model">save</button>
         </div>
         `;
-  }
-
-  bindEvents(fragement: DocumentFragment) {
-    //  iterate over each key in events map
-    // events map contains the selector and event name as key and callback as value
-    // on each iteration ...select all the documents from fragments that have the selector and add an event listener
-    // (event name is in eventsmap and callback is in events map as well) and selector is also in events map (a quadratic operation)
-    const eventsMap = this.eventsMap();
-    for (let eventKey in eventsMap) {
-      const [eventName, selector] = eventKey.split(":");
-      fragement.querySelectorAll(selector).forEach((element) => {
-        element.addEventListener(eventName, eventsMap[eventKey]);
-      });
-    }
-  }
-  render(): void {
-    const templateElement = document.createElement("template");
-    templateElement.innerHTML = this.template();
-    // binding events to the document fragement before appending as child
-    this.bindEvents(templateElement.content);
-    
-    this.parent.append(templateElement.content);
   }
 }
