@@ -1,14 +1,19 @@
-import express from "express";
+import express,{Express} from "express";
 
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
-const app = express();
+const app:Express = express();
+
 
 import { AppRouter } from "./AppRouter";
 
 //? invoking the code in login controller i.e mapping routes to handlers in singleton app router
 import './controllers/rootController'
 import "./controllers/loginController";
+
+
+
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession({ keys: ["somerandomstring"] }));
